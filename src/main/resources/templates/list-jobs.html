@@ -11,13 +11,11 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <!-- TODO #3 - Use the same list display from search.html -->
-    <table>
-        <tr th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
-            <td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="'Position Type: ' + ${job.position_type}
-                            + ' - Title: ' + ${job.name}
-                            + ' - Employer ' + ${job.employer}
-                            + ' - Location: ' + ${job.location}
-                            + ' - Core Competency: ' + ${job.core_competency}"></a></td>
+    <table th:each="job, idx : ${jobs}">
+        <tr th:each="field : ${job}" th:class="${idx.odd} ? 'odd'">
+            <td th:text="${field.key}"></td>
+            <td th:text="${field.value}"></td>
+
         </tr>
     </table>
 </div>
